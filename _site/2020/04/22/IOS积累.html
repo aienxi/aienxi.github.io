@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOS积累 - 史文强的独立博客</title>
+    <meta name="author"  content="史文强">
+    <meta name="description" content="iOS积累">
+    <meta name="keywords"  content="git">
+    <!-- Open Graph -->
+    <meta property="og:title" content="iOS积累 - 史文强的独立博客">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2020/04/22/IOS%E7%A7%AF%E7%B4%AF.html">
+    <meta property="og:description" content="自己当做笔记">
+    <meta property="og:site_name" content="史文强的独立博客">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+Author: Ray-Eldath
+refer to:
+ - http://docs.mathjax.org/en/latest/options/index.html
+-->
+
+	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["$", "$"] ],
+			displayMath: [ ["$$", "$$"] ],
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+	
+    <!--
+Author: Ray-Eldath
+-->
+<style>
+    .markdown-body .anchor{
+        float: left;
+        margin-top: -8px;
+        margin-left: -20px;
+        padding-right: 4px;
+        line-height: 1;
+        opacity: 0;
+    }
+    
+    .markdown-body .anchor .anchor-icon{
+        font-size: 15px
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        let nodes = document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3")
+        for(let node of nodes) {
+            var anchor = document.createElement("a")
+            var anchorIcon = document.createElement("i")
+            anchorIcon.setAttribute("class", "fa fa-anchor fa-lg anchor-icon")
+            anchorIcon.setAttribute("aria-hidden", true)
+            anchor.setAttribute("class", "anchor")
+            anchor.setAttribute("href", "#" + node.getAttribute("id"))
+            
+            anchor.onmouseover = function() {
+                this.style.opacity = "0.4"
+            }
+            
+            anchor.onmouseout = function() {
+                this.style.opacity = "0"
+            }
+            
+            anchor.appendChild(anchorIcon)
+            node.appendChild(anchor)
+        }
+    })
+</script>
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header
+    class="g-banner post-header post-pattern-circuitBoard bgcolor-default post-no-cover"
+    data-theme="default"
+  >
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="/tags.html#git" class="post-tag">git</a>
+          
+        
+      </div>
+      <h1>iOS积累</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i>史文强</span>
+        <time class="post-meta-item" datetime="20-04-22"><i class="iconfont icon-date"></i>22 Apr 2020</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <p><span id="catalog">目录</span>
+[toc]</p>
+
+<h1 id="1数组比较且数组的元素为对象时">1、数组比较且数组的元素为对象时</h1>
+<p>涉及到数组比较且数组的元素为对象时，重写对象的 isEqual 方法</p>
+
+<p><a href="#catalog">返回目录</a></p>
+<hr />
+
+<h1 id="2ios-年份格式">2、ios 年份格式</h1>
+<p>年份格式化“yyyy”计算的年份是正常的每年1月1号开始计算，“YYYY”却是从当年的第一个星期天开始计算；</p>
+
+<p>结果由于2019年的第一个星期天是2018年的12月29号，所以进入2019年也就相对早了3天；</p>
+
+<p><a href="#catalog">返回目录</a></p>
+
+<hr />
+
+<h1 id="3reloaddate后需要立即获取tableview的cell高度或者需要滚动tableview">3、reloadDate后需要立即获取tableview的cell、高度，或者需要滚动tableview</h1>
+<p>如果在reloadDate后需要立即获取tableview的cell、高度，或者需要滚动tableview，那么，直接在reloadData后执行代码是有可能出问题的。</p>
+
+<p>reloadDate并不会等待tableview更新结束后才返回，而是立即返回，然后去计算表高度，获取cell等。</p>
+
+<p>如果表中的数据非常大，在一个run loop周期没执行完，这时，需要tableview视图数据的操作就会出问题了。</p>
+
+<p>apple并没有直接提供reloadData的api，想要程序延迟到reloadData结束在操作，可以用以下方法</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="o">[</span><span class="nt">self</span><span class="nc">.tableView</span> <span class="nt">reloadData</span><span class="o">];</span>
+<span class="o">[</span><span class="nt">self</span><span class="nc">.tableView</span> <span class="nt">layoutIfNeeded</span><span class="o">];</span>
+<span class="o">//</span><span class="err">刷新完成</span>
+
+</code></pre></div></div>
+<p>layoutIfNeeded会强制重绘并等待完成。</p>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span><span class="nt">self</span><span class="nc">.tableView</span> <span class="nt">reloadData</span><span class="o">];</span>
+<span class="nt">dispatch_async</span><span class="o">(</span><span class="nt">dispatch_get_main_queue</span><span class="o">(),</span> <span class="o">^</span><span class="p">{</span>
+    <span class="err">//刷新完成</span>
+<span class="p">}</span><span class="o">);</span>
+
+</code></pre></div></div>
+<p>reloadDate会在主队列执行，而dispatch_get_main_queue会等待机会，直到主队列空闲才执行。</p>
+
+<p><a href="#catalog">返回目录</a></p>
+
+<hr />
+
+<h1 id="4ios判断uiscrollview是上拉还是下拉">4、iOS判断UIScrollView是上拉还是下拉</h1>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">assign</span><span class="p">)</span> <span class="n">CGFloat</span> <span class="n">lastcontentOffset</span><span class="p">;</span> <span class="o">//</span><span class="err">添加此属性的作用，根据差值，判断</span><span class="nt">ScrollView</span><span class="err">是上滑还是下拉</span>
+</code></pre></div></div>
+<p>UIScrollViewDelegate</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-</span> <span class="o">(</span><span class="nt">void</span><span class="o">)</span><span class="nt">scrollViewDidScroll</span><span class="o">:(</span><span class="nt">UIScrollView</span> <span class="o">*)</span><span class="nt">scrollView</span><span class="p">{</span>
+    <span class="err">CGFloat</span> <span class="err">hight</span> <span class="err">=</span> <span class="err">scrollView.frame.size.height;</span>
+    <span class="err">CGFloat</span> <span class="err">contentOffset</span> <span class="err">=</span> <span class="err">scrollView.contentOffset.y;</span>
+    <span class="err">CGFloat</span> <span class="err">distanceFromBottom</span> <span class="err">=</span> <span class="err">scrollView.contentSize.height</span> <span class="err">-</span> <span class="err">contentOffset;</span>
+    <span class="err">CGFloat</span> <span class="err">offset</span> <span class="err">=</span> <span class="err">contentOffset</span> <span class="err">-</span> <span class="err">self.lastcontentOffset;</span>
+    <span class="err">self.lastcontentOffset</span> <span class="err">=</span> <span class="err">contentOffset;</span>
+    
+    <span class="err">if</span> <span class="err">(offset</span> <span class="err">&gt;</span> <span class="err">0</span> <span class="err">&amp;&amp;</span> <span class="err">contentOffset</span> <span class="err">&gt;</span> <span class="err">0)</span> <span class="err">{</span>
+       <span class="err">NSLog(@"上拉行为");</span>
+    <span class="p">}</span>
+    <span class="nt">if</span> <span class="o">(</span><span class="nt">offset</span> <span class="o">&lt;</span> <span class="nt">0</span> <span class="o">&amp;&amp;</span> <span class="nt">distanceFromBottom</span> <span class="o">&gt;</span> <span class="nt">hight</span><span class="o">)</span> <span class="p">{</span>
+        <span class="err">NSLog(@"下拉行为");</span>
+    <span class="p">}</span>
+    <span class="nt">if</span> <span class="o">(</span><span class="nt">contentOffset</span> <span class="o">==</span> <span class="nt">0</span><span class="o">)</span> <span class="p">{</span>
+        <span class="err">NSLog(@"滑动到顶部");</span>
+    <span class="p">}</span>
+    <span class="nt">if</span> <span class="o">(</span><span class="nt">distanceFromBottom</span> <span class="o">&lt;</span> <span class="nt">hight</span><span class="o">)</span> <span class="p">{</span>
+          <span class="err">NSLog(@"滑动到底部");</span>
+    <span class="p">}</span>
+    
+<span class="err">}</span>
+</code></pre></div></div>
+<p><a href="#catalog">返回目录</a></p>
+
+<hr />
+
+<h1 id="5xcode-buildnumber自动递增">5、xcode buildNumber自动递增</h1>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">if</span> <span class="o">[</span> <span class="err">$</span><span class="nt">CONFIGURATION</span> <span class="o">==</span> <span class="nt">Release</span> <span class="o">];</span> <span class="nt">then</span>
+<span class="nt">echo</span> <span class="s1">"Bumping build number..."</span>
+<span class="nt">plist</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="err">PROJECT_DIR</span><span class="p">}</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="err">INFOPLIST_FILE</span><span class="p">}</span>
+ 
+<span class="nf">#increment</span> <span class="nt">the</span> <span class="nt">build</span> <span class="nt">number</span> <span class="o">(</span><span class="nt">ie</span> <span class="nt">115</span> <span class="nt">to</span> <span class="nt">116</span><span class="o">)</span>
+<span class="nt">buildnum</span><span class="o">=</span><span class="err">$</span><span class="o">(/</span><span class="nt">usr</span><span class="o">/</span><span class="nt">libexec</span><span class="o">/</span><span class="nt">PlistBuddy</span> <span class="nt">-c</span> <span class="s1">"Print CFBundleVersion"</span> <span class="s1">"${plist}"</span><span class="o">)</span>
+<span class="nt">if</span> <span class="o">[[</span> <span class="s1">"${buildnum}"</span> <span class="o">==</span> <span class="s1">""</span> <span class="o">]];</span> <span class="nt">then</span>
+<span class="nt">echo</span> <span class="s1">"No build number in $plist"</span>
+<span class="nt">exit</span> <span class="nt">2</span>
+<span class="nt">fi</span>
+ 
+<span class="nt">buildnum</span><span class="o">=</span><span class="err">$</span><span class="o">(</span><span class="nt">expr</span> <span class="err">$</span><span class="nt">buildnum</span> <span class="o">+</span> <span class="nt">1</span><span class="o">)</span>
+<span class="o">/</span><span class="nt">usr</span><span class="o">/</span><span class="nt">libexec</span><span class="o">/</span><span class="nt">Plistbuddy</span> <span class="nt">-c</span> <span class="s1">"Set CFBundleVersion $buildnum"</span> <span class="s1">"${plist}"</span>
+<span class="nt">echo</span> <span class="s1">"Bumped build number to $buildnum"</span>
+ 
+<span class="nt">else</span>
+<span class="nt">echo</span> <span class="err">$</span><span class="nt">CONFIGURATION</span> <span class="s1">" build - Not bumping build number."</span>
+<span class="nt">fi</span>
+</code></pre></div></div>
+
+<p><a href="#catalog">返回目录</a></p>
+
+<hr />
+
+<h1 id="6隐藏导航栏下横线">6、隐藏导航栏下横线</h1>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-</span> <span class="o">(</span><span class="nt">void</span><span class="o">)</span><span class="nt">viewWillAppear</span><span class="o">:(</span><span class="nt">BOOL</span><span class="o">)</span><span class="nt">animated</span><span class="p">{</span>
+    <span class="err">[super</span> <span class="py">viewWillAppear</span><span class="p">:</span><span class="n">animated</span><span class="p">];</span>
+    <span class="err">//设置导航栏背景图片为一个空的image，这样就透明了</span>
+    <span class="err">[self.navigationController.navigationBar</span> <span class="py">setBackgroundImage</span><span class="p">:[[</span><span class="n">UIImage</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">forBarMetrics</span><span class="p">:</span><span class="n">UIBarMetricsDefault</span><span class="p">];</span>
+    <span class="err">//去掉透明后导航栏下边的黑边</span>
+    <span class="err">[self.navigationController.navigationBar</span> <span class="py">setShadowImage</span><span class="p">:[[</span><span class="n">UIImage</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]];</span>
+<span class="p">}</span>
+<span class="nt">-</span> <span class="o">(</span><span class="nt">void</span><span class="o">)</span><span class="nt">viewWillDisappear</span><span class="o">:(</span><span class="nt">BOOL</span><span class="o">)</span><span class="nt">animated</span><span class="p">{</span>
+    <span class="err">[super</span> <span class="py">viewWillDisappear</span><span class="p">:</span><span class="n">animated</span><span class="p">];</span>
+        <span class="err">//</span>    <span class="err">如果不想让其他页面的导航栏变为透明</span> <span class="err">需要重置</span>
+    <span class="err">[self.navigationController.navigationBar</span> <span class="py">setBackgroundImage</span><span class="p">:</span><span class="n">nil</span> <span class="n">forBarMetrics</span><span class="p">:</span><span class="n">UIBarMetricsDefault</span><span class="p">];</span>
+    <span class="err">[self.navigationController.navigationBar</span> <span class="py">setShadowImage</span><span class="p">:</span><span class="n">nil</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><a href="#catalog">返回目录</a></p>
+
+<hr />
+
+<h1 id="7解决mac连接手机一直闪烁断开连接的问题">7、解决Mac连接手机一直闪烁断开连接的问题</h1>
+
+<p>打开MAC终端，输入下面的命令：</p>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">sudo</span> <span class="nt">killall</span> <span class="nt">-STOP</span> <span class="nt">-c</span> <span class="nt">usbd</span>
+</code></pre></div></div>
+<p><a href="#catalog">返回目录</a></p>
+
+<hr />
+
+
+    </article>
+
+    
+    <div class="social-share-wrapper">
+      <div class="social-share"></div>
+    </div>
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="/assets/img/profile.png" alt="">
+      </div>
+      <div class="author-name" rel="author">史文强</div>
+      <div class="bio">
+        <p>iOS开发者</p>
+      </div>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+      <div class="read-next-item">
+        <a href="/2020/04/22/git.html" class="read-next-link"></a>
+        <section>
+          <span>git</span>
+          <p>###</p>
+        </section>
+        
+     </div>
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2020/04/22/mathjax-test.html" class="read-next-link"></a>
+          <section>
+            <span>Git相关内容</span>
+            <p>mathjax in markdown :)</p>
+          </section>
+          
+      </div>
+      
+    </section>
+    
+  </section>
+
+  <footer class="g-footer">
+  <section>史文强的独立博客 ©
+  
+  
+  2020
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          ,
+          
+        
+          'twitter'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  
+
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+</body>
+
+</html>
