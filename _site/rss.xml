@@ -5,17 +5,163 @@
     <description>自己当做笔记</description>
     <link>http://localhost:4000//</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 22 Apr 2020 11:23:30 +0800</pubDate>
-    <lastBuildDate>Wed, 22 Apr 2020 11:23:30 +0800</lastBuildDate>
+    <pubDate>Wed, 22 Apr 2020 12:12:05 +0800</pubDate>
+    <lastBuildDate>Wed, 22 Apr 2020 12:12:05 +0800</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
     
       <item>
-        <title>Hello Jekyll.md</title>
-        <description>
+        <title>git</title>
+        <description>&lt;p&gt;###&lt;/p&gt;
 </description>
         <pubDate>Wed, 22 Apr 2020 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2020/04/22/hello-jekyll.md.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2020/04/22/hello-jekyll.md.html</guid>
+        <link>http://localhost:4000/2020/04/22/git.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/04/22/git.html</guid>
+        
+        <category>git</category>
+        
+        
+      </item>
+    
+      <item>
+        <title>iOS积累</title>
+        <description>&lt;p&gt;&lt;span id=&quot;catalog&quot;&gt;目录&lt;/span&gt;
+[toc]&lt;/p&gt;
+
+&lt;h1 id=&quot;1数组比较且数组的元素为对象时&quot;&gt;1、数组比较且数组的元素为对象时&lt;/h1&gt;
+&lt;p&gt;涉及到数组比较且数组的元素为对象时，重写对象的 isEqual 方法&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#catalog&quot;&gt;返回目录&lt;/a&gt;&lt;/p&gt;
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;2ios-年份格式&quot;&gt;2、ios 年份格式&lt;/h1&gt;
+&lt;p&gt;年份格式化“yyyy”计算的年份是正常的每年1月1号开始计算，“YYYY”却是从当年的第一个星期天开始计算；&lt;/p&gt;
+
+&lt;p&gt;结果由于2019年的第一个星期天是2018年的12月29号，所以进入2019年也就相对早了3天；&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#catalog&quot;&gt;返回目录&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;3reloaddate后需要立即获取tableview的cell高度或者需要滚动tableview&quot;&gt;3、reloadDate后需要立即获取tableview的cell、高度，或者需要滚动tableview&lt;/h1&gt;
+&lt;p&gt;如果在reloadDate后需要立即获取tableview的cell、高度，或者需要滚动tableview，那么，直接在reloadData后执行代码是有可能出问题的。&lt;/p&gt;
+
+&lt;p&gt;reloadDate并不会等待tableview更新结束后才返回，而是立即返回，然后去计算表高度，获取cell等。&lt;/p&gt;
+
+&lt;p&gt;如果表中的数据非常大，在一个run loop周期没执行完，这时，需要tableview视图数据的操作就会出问题了。&lt;/p&gt;
+
+&lt;p&gt;apple并没有直接提供reloadData的api，想要程序延迟到reloadData结束在操作，可以用以下方法&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.tableView&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;reloadData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.tableView&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;layoutIfNeeded&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;刷新完成&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;layoutIfNeeded会强制重绘并等待完成。&lt;/p&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.tableView&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;reloadData&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;dispatch_async&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;dispatch_get_main_queue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;//刷新完成&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;reloadDate会在主队列执行，而dispatch_get_main_queue会等待机会，直到主队列空闲才执行。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;#catalog&quot;&gt;返回目录&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;4ios判断uiscrollview是上拉还是下拉&quot;&gt;4、iOS判断UIScrollView是上拉还是下拉&lt;/h1&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;@property&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nonatomic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;assign&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CGFloat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;lastcontentOffset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;添加此属性的作用，根据差值，判断&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;ScrollView&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;是上滑还是下拉&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;UIScrollViewDelegate&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;scrollViewDidScroll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;UIScrollView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;scrollView&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;CGFloat&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;hight&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;scrollView.frame.size.height;&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;CGFloat&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;contentOffset&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;scrollView.contentOffset.y;&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;CGFloat&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;distanceFromBottom&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;scrollView.contentSize.height&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;contentOffset;&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;CGFloat&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;offset&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;contentOffset&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;self.lastcontentOffset;&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;self.lastcontentOffset&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;contentOffset;&lt;/span&gt;
+    
+    &lt;span class=&quot;err&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;(offset&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;contentOffset&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;0)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+       &lt;span class=&quot;err&quot;&gt;NSLog(@&quot;上拉行为&quot;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;offset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;distanceFromBottom&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;hight&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;NSLog(@&quot;下拉行为&quot;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;contentOffset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;NSLog(@&quot;滑动到顶部&quot;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;distanceFromBottom&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;hight&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;err&quot;&gt;NSLog(@&quot;滑动到底部&quot;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;#catalog&quot;&gt;返回目录&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;5xcode-buildnumber自动递增&quot;&gt;5、xcode buildNumber自动递增&lt;/h1&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;CONFIGURATION&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;Release&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;];&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;then&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;Bumping build number...&quot;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;plist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;PROJECT_DIR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;INFOPLIST_FILE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+ 
+&lt;span class=&quot;nf&quot;&gt;#increment&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;build&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;ie&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;115&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;116&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;buildnum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;usr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;libexec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;PlistBuddy&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;Print CFBundleVersion&quot;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;${plist}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;${buildnum}&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]];&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;then&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;No build number in $plist&quot;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;exit&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;fi&lt;/span&gt;
+ 
+&lt;span class=&quot;nt&quot;&gt;buildnum&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;expr&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;buildnum&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;usr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;libexec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;Plistbuddy&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;Set CFBundleVersion $buildnum&quot;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;${plist}&quot;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot;Bumped build number to $buildnum&quot;&lt;/span&gt;
+ 
+&lt;span class=&quot;nt&quot;&gt;else&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;CONFIGURATION&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&quot; build - Not bumping build number.&quot;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;fi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;#catalog&quot;&gt;返回目录&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;6隐藏导航栏下横线&quot;&gt;6、隐藏导航栏下横线&lt;/h1&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;viewWillAppear&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;BOOL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;animated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;[super&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;viewWillAppear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;//设置导航栏背景图片为一个空的image，这样就透明了&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;[self.navigationController.navigationBar&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;setBackgroundImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIImage&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;forBarMetrics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIBarMetricsDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;//去掉透明后导航栏下边的黑边&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;[self.navigationController.navigationBar&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;setShadowImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:[[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIImage&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;viewWillDisappear&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;BOOL&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;animated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;[super&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;viewWillDisappear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;//&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;如果不想让其他页面的导航栏变为透明&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;需要重置&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;[self.navigationController.navigationBar&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;setBackgroundImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;forBarMetrics&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIBarMetricsDefault&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;[self.navigationController.navigationBar&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;setShadowImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;#catalog&quot;&gt;返回目录&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;7解决mac连接手机一直闪烁断开连接的问题&quot;&gt;7、解决Mac连接手机一直闪烁断开连接的问题&lt;/h1&gt;
+
+&lt;p&gt;打开MAC终端，输入下面的命令：&lt;/p&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;killall&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-STOP&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;usbd&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;#catalog&quot;&gt;返回目录&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+</description>
+        <pubDate>Wed, 22 Apr 2020 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2020/04/22/IOS%E7%A7%AF%E7%B4%AF.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/04/22/IOS%E7%A7%AF%E7%B4%AF.html</guid>
+        
+        <category>git</category>
         
         
       </item>
