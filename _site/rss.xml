@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>廖柯宇的独立博客</title>
-    <description>昵称悟空，千禧一代，前端开发者/伪极客/灵魂摄影师，热爱技术&amp;设计。很高兴能在这里与你分享我对技术和生活的思考。</description>
+    <title>史文强的独立博客</title>
+    <description>自己当做笔记</description>
     <link>http://localhost:4000//</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 22 Apr 2020 10:49:57 +0800</pubDate>
-    <lastBuildDate>Wed, 22 Apr 2020 10:49:57 +0800</lastBuildDate>
+    <pubDate>Wed, 22 Apr 2020 11:23:30 +0800</pubDate>
+    <lastBuildDate>Wed, 22 Apr 2020 11:23:30 +0800</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
     
       <item>
-        <title>MathJax Test</title>
+        <title>Hello Jekyll.md</title>
+        <description>
+</description>
+        <pubDate>Wed, 22 Apr 2020 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2020/04/22/hello-jekyll.md.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/04/22/hello-jekyll.md.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Git相关内容</title>
         <description>&lt;p&gt;mathjax in markdown :)&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;这是一个不&lt;code class=&quot;highlighter-rouge&quot;&gt;align&lt;/code&gt;的公式&lt;/strong&gt;：&lt;/p&gt;
@@ -30,9 +41,9 @@ k &amp;= m\oplus c
 
 &lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;公式块要想有较好的显示效果，必须在公式块标记符&lt;code class=&quot;highlighter-rouge&quot;&gt;$$&lt;/code&gt;&lt;strong&gt;前后&lt;/strong&gt;留有空行，否则公式将不能正常居中。行内公式无此问题。&lt;/p&gt;
 </description>
-        <pubDate>Sun, 30 Jul 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/2017/07/30/mathjax-test.html</link>
-        <guid isPermaLink="true">http://localhost:4000/2017/07/30/mathjax-test.html</guid>
+        <pubDate>Wed, 22 Apr 2020 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2020/04/22/mathjax-test.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/04/22/mathjax-test.html</guid>
         
         <category>mathjax</category>
         

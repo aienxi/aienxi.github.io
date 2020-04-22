@@ -1,7 +1,7 @@
 ---
 layout: post
-title: MathJax Test
-date: 2017-07-30
+title: Git相关内容
+date: 2020-04-22
 categories: test
 tags: mathjax 
 ---
