@@ -1,6 +1,12 @@
 [
   
     {
+      "title"    : "iOS播放器",
+      "tags"     : "播放器",
+      "url"      : "/2020/04/23/IOS%E6%92%AD%E6%94%BE%E5%99%A8%E7%9B%B8%E5%85%B3.html"
+    } ,
+  
+    {
       "title"    : "git",
       "tags"     : "git",
       "url"      : "/2020/04/22/git.html"

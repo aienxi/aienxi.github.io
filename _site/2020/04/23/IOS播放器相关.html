@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOS播放器 - 史文强的独立博客</title>
+    <meta name="author"  content="史文强">
+    <meta name="description" content="iOS播放器">
+    <meta name="keywords"  content="播放器">
+    <!-- Open Graph -->
+    <meta property="og:title" content="iOS播放器 - 史文强的独立博客">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://localhost:4000/2020/04/23/IOS%E6%92%AD%E6%94%BE%E5%99%A8%E7%9B%B8%E5%85%B3.html">
+    <meta property="og:description" content="自己当做笔记">
+    <meta property="og:site_name" content="史文强的独立博客">
+    <link rel="stylesheet" href="//cdn.staticfile.org/normalize/6.0.0/normalize.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_roc50gemkxpw4s4i.css">
+    <link rel="stylesheet" href="/assets/css/github-markdown.css">
+    <link rel="stylesheet" href="/assets/css/prism.css">
+    <link rel="stylesheet" href="/assets/css/share.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+	
+	<!--
+Author: Ray-Eldath
+refer to:
+ - http://docs.mathjax.org/en/latest/options/index.html
+-->
+
+	<script type="text/javascript" async src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+	
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+		jax: ["input/TeX", "output/HTML-CSS"],
+		tex2jax: {
+			inlineMath: [ ["$", "$"] ],
+			displayMath: [ ["$$", "$$"] ],
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+		},
+		"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+      });
+    </script>
+
+	
+    <!--
+Author: Ray-Eldath
+-->
+<style>
+    .markdown-body .anchor{
+        float: left;
+        margin-top: -8px;
+        margin-left: -20px;
+        padding-right: 4px;
+        line-height: 1;
+        opacity: 0;
+    }
+    
+    .markdown-body .anchor .anchor-icon{
+        font-size: 15px
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        let nodes = document.querySelector(".markdown-body").querySelectorAll("h1,h2,h3")
+        for(let node of nodes) {
+            var anchor = document.createElement("a")
+            var anchorIcon = document.createElement("i")
+            anchorIcon.setAttribute("class", "fa fa-anchor fa-lg anchor-icon")
+            anchorIcon.setAttribute("aria-hidden", true)
+            anchor.setAttribute("class", "anchor")
+            anchor.setAttribute("href", "#" + node.getAttribute("id"))
+            
+            anchor.onmouseover = function() {
+                this.style.opacity = "0.4"
+            }
+            
+            anchor.onmouseout = function() {
+                this.style.opacity = "0"
+            }
+            
+            anchor.appendChild(anchorIcon)
+            node.appendChild(anchor)
+        }
+    })
+</script>
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+<div class="alert-danger" role="alert">你的浏览器实在太太太旧了，放学别走，升级完浏览器再说！<a target="_blank" class="alert-link" href="http://browsehappy.com">立即升级</a></div>
+<![endif]-->
+  <input id="nm-switch" type="hidden" value="true"> <header class="g-header">
+    <div class="g-logo">
+      <a href="/"></a>
+    </div>
+    <i id="menu-toggle" class="iconfont icon-menu"></i>
+    <nav class="g-nav">
+        <ul>
+            
+            <li><a href="/">home</a></li>
+            
+            <li><a href="/tags.html">tags</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+
+  <header
+    class="g-banner post-header post-pattern-circuitBoard bgcolor-default post-no-cover"
+    data-theme="default"
+  >
+    <div class="post-wrapper">
+      <div class="post-tags">
+        
+          
+            <a href="/tags.html#%E6%92%AD%E6%94%BE%E5%99%A8" class="post-tag">播放器</a>
+          
+        
+      </div>
+      <h1>iOS播放器</h1>
+      <div class="post-meta">
+        <span class="post-meta-item"><i class="iconfont icon-author"></i>史文强</span>
+        <time class="post-meta-item" datetime="20-04-23"><i class="iconfont icon-date"></i>23 Apr 2020</time>
+      </div>
+    </div>
+    
+  </header>
+
+  <div class="post-content visible">
+    
+
+    <article class="markdown-body">
+      <h3 id="设置后台播放">设置后台播放</h3>
+<h4 id="1在signing--capabilities中设-backgroud-modes-按需添加">1.在Signing &amp; Capabilities中设 backgroud modes 按需添加</h4>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">backgroud</span> <span class="nt">modes</span>
+<span class="nt">App</span> <span class="nt">plays</span> <span class="nt">audio</span> <span class="nt">or</span> <span class="nt">streams</span> <span class="nt">audio</span><span class="o">/</span><span class="nt">video</span> <span class="nt">using</span> <span class="nt">AirPlay</span>
+<span class="nt">App</span> <span class="nt">downloads</span> <span class="nt">content</span> <span class="nt">from</span> <span class="nt">the</span> <span class="nt">network</span>
+<span class="nt">App</span> <span class="nt">downloads</span> <span class="nt">content</span> <span class="nt">in</span> <span class="nt">response</span> <span class="nt">to</span> <span class="nt">push</span> <span class="nt">notifications</span>
+</code></pre></div></div>
+<h4 id="2激活音频会话">2.激活音频会话</h4>
+
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="o">//</span> <span class="err">设置后台播放的代码</span><span class="o">,</span><span class="err">步骤</span>
+    <span class="o">//</span> <span class="nt">1</span><span class="o">.</span><span class="err">获取音频的会话</span>
+    <span class="nt">AVAudioSession</span> <span class="o">*</span><span class="nt">session</span> <span class="o">=</span> <span class="o">[</span><span class="nt">AVAudioSession</span> <span class="nt">sharedInstance</span><span class="o">];</span>
+    <span class="o">//</span> <span class="nt">2</span><span class="o">.</span><span class="err">设置后台播放类型</span>
+    <span class="o">[</span><span class="nt">session</span> <span class="nt">setCategory</span><span class="nd">:AVAudioSessionCategoryPlayback</span> <span class="nt">error</span><span class="nd">:nil</span><span class="o">];</span>
+    <span class="o">//</span> <span class="nt">3</span><span class="o">.</span><span class="err">激活会话</span>
+    <span class="o">[</span><span class="nt">session</span> <span class="nt">setActive</span><span class="nd">:YES</span> <span class="nt">error</span><span class="nd">:nil</span><span class="o">];</span>
+
+</code></pre></div></div>
+<h4 id="播放轨道变化通知-连接耳机-音箱等插拔耳机音频被打断事件配置远程控制显示的信息耳机线控">播放轨道变化通知 （连接耳机 音箱等）、插拔耳机、音频被打断事件、配置远程控制显示的信息（耳机线控）</h4>
+<div class="language-css highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-</span><span class="o">(</span><span class="nt">void</span><span class="o">)</span><span class="nt">afterInit</span><span class="p">{</span>
+
+    <span class="err">///配置远程控制显示的信息</span>
+    <span class="err">[[UIApplication</span> <span class="err">sharedApplication]</span>
+    <span class="err">beginReceivingRemoteControlEvents];</span>
+    <span class="err">[self</span> <span class="err">configRemoteCommandCenter];</span>
+
+<span class="err">//</span>  <span class="err">插拔耳机</span>
+    <span class="err">[[NSNotificationCenter</span> <span class="err">defaultCenter]</span> <span class="py">addObserver</span><span class="p">:</span><span class="n">self</span> <span class="n">selector</span><span class="p">:</span><span class="err">@</span><span class="n">selector</span><span class="p">(</span><span class="n">audioRouteChangeListenerCallback</span><span class="p">:)</span>   <span class="n">name</span><span class="p">:</span><span class="n">AVAudioSessionRouteChangeNotification</span> <span class="n">object</span><span class="p">:</span><span class="n">nil</span><span class="p">];</span>
+<span class="err">//</span>  <span class="err">音频被打断事件</span>
+    <span class="err">[[NSNotificationCenter</span> <span class="err">defaultCenter]</span> <span class="py">addObserver</span><span class="p">:</span><span class="n">self</span> <span class="n">selector</span><span class="p">:</span><span class="err">@</span><span class="n">selector</span><span class="p">(</span><span class="n">audioBreakEvent</span><span class="p">:)</span> <span class="n">name</span><span class="p">:</span><span class="n">AVAudioSessionInterruptionNotification</span> <span class="n">object</span><span class="p">:</span><span class="n">nil</span><span class="p">];</span>
+<span class="err">//</span>  <span class="err">应用程序进入前台</span>
+    <span class="err">[[NSNotificationCenter</span> <span class="err">defaultCenter]</span> <span class="py">addObserver</span><span class="p">:</span><span class="n">self</span> <span class="n">selector</span><span class="p">:</span><span class="err">@</span><span class="n">selector</span><span class="p">(</span><span class="n">appDidBecomeActive</span><span class="p">)</span> <span class="n">name</span><span class="p">:</span><span class="n">UIApplicationDidBecomeActiveNotification</span> <span class="n">object</span><span class="p">:</span><span class="n">nil</span><span class="p">];</span>
+
+<span class="p">}</span>        
+<span class="nf">#pragma</span> <span class="nt">mark</span> <span class="nt">-</span>   <span class="err">插拔耳机</span>
+<span class="nt">-</span> <span class="o">(</span><span class="nt">void</span><span class="o">)</span><span class="nt">audioRouteChangeListenerCallback</span><span class="o">:(</span><span class="nt">NSNotification</span><span class="o">*)</span><span class="nt">notification</span><span class="p">{</span>
+    <span class="err">NSDictionary</span> <span class="err">*interuptionDict</span> <span class="err">=</span> <span class="err">notification.userInfo;</span>
+    <span class="err">DLog(@"%@",interuptionDict);</span>
+    <span class="err">NSInteger</span> <span class="err">routeChangeReason</span> <span class="err">=</span> <span class="err">[[interuptionDict</span> <span class="py">valueForKey</span><span class="p">:</span><span class="n">AVAudioSessionRouteChangeReasonKey</span><span class="p">]</span> <span class="n">integerValue</span><span class="p">];</span>
+    <span class="err">switch</span> <span class="err">(routeChangeReason)</span> <span class="err">{</span>
+        <span class="err">case</span> <span class="py">AVAudioSessionRouteChangeReasonNewDeviceAvailable</span><span class="p">:</span>
+            <span class="n">DLog</span><span class="p">(</span><span class="err">@</span><span class="s1">"耳机插入"</span><span class="p">);</span>
+            <span class="err">break;</span>
+        <span class="err">case</span> <span class="py">AVAudioSessionRouteChangeReasonOldDeviceUnavailable</span><span class="p">:</span>
+        <span class="err">{</span>
+            <span class="n">DLog</span><span class="p">(</span><span class="err">@</span><span class="s1">"耳机拔出，停止播放操作"</span><span class="p">);</span>
+            <span class="err">dispatch_async(dispatch_get_main_queue(),</span> <span class="err">^{</span>
+                <span class="err">[self</span> <span class="err">pause];</span>
+            <span class="p">}</span><span class="o">);</span>
+
+        <span class="err">}</span>
+            <span class="nt">break</span><span class="o">;</span>
+        <span class="nt">case</span> <span class="nt">AVAudioSessionRouteChangeReasonCategoryChange</span><span class="o">:</span>
+            <span class="nt">DLog</span><span class="o">(@</span><span class="s1">"AVAudioSessionRouteChangeReasonCategoryChange"</span><span class="o">);</span>
+            <span class="nt">DLog</span><span class="o">(@</span><span class="s1">"AVAudioSession category = %@"</span><span class="o">,[</span><span class="nt">AVAudioSession</span> <span class="nt">sharedInstance</span><span class="o">]</span><span class="nc">.category</span><span class="o">);</span>
+            <span class="nt">break</span><span class="o">;</span>
+    <span class="err">}</span>
+<span class="err">}</span>
+<span class="nf">#pragma</span> <span class="nt">mark</span> <span class="nt">-</span> <span class="err">音频被打断事件</span>
+<span class="nt">-</span> <span class="o">(</span><span class="nt">void</span><span class="o">)</span><span class="nt">audioBreakEvent</span><span class="o">:(</span><span class="nt">NSNotification</span><span class="o">*)</span><span class="nt">notification</span><span class="p">{</span>
+    <span class="err">DLog(@"audioBreakEvent");</span>
+        <span class="err">NSDictionary</span> <span class="err">*interuptionDict</span> <span class="err">=</span> <span class="err">notification.userInfo;</span>
+        <span class="err">NSInteger</span> <span class="err">state</span> <span class="err">=</span> <span class="err">[[interuptionDict</span> <span class="py">objectForKey</span><span class="p">:</span><span class="err">@</span><span class="s1">"AVAudioSessionInterruptionTypeKey"</span><span class="p">]</span> <span class="n">integerValue</span><span class="p">];</span>
+        <span class="err">if</span> <span class="err">(state</span> <span class="err">==</span> <span class="err">1)</span> <span class="err">{</span>
+        <span class="err">//当AudioSession被抢时，若我们的APP此时正在播放音频，暂停播放，并且标记下音频是被打断的</span>
+            <span class="err">if</span> <span class="err">(self.isAudioActivity)</span> <span class="err">{</span>
+                <span class="err">_breadType</span> <span class="err">=</span> <span class="err">1;</span>
+                <span class="err">[self</span> <span class="err">pause];</span>
+            <span class="p">}</span>
+        <span class="err">}</span><span class="nt">else</span><span class="p">{</span>
+        <span class="err">//当夺回音频焦点时若音频是被打断的，则回恢复播放</span>
+            <span class="err">if</span> <span class="err">(_breadType</span> <span class="err">==</span> <span class="err">1)</span> <span class="err">{</span>
+                <span class="err">_breadType</span> <span class="err">=</span> <span class="err">0;</span>
+                <span class="err">[self</span> <span class="err">resume];</span>
+            <span class="p">}</span>
+        <span class="err">}</span>
+        <span class="nt">DLog</span><span class="o">(@</span><span class="s1">"%@"</span><span class="o">,</span><span class="nt">interuptionDict</span><span class="o">);</span>
+<span class="err">}</span>
+<span class="nt">-</span> <span class="o">(</span><span class="nt">void</span><span class="o">)</span><span class="nt">appDidBecomeActive</span><span class="p">{</span>
+    <span class="err">//当appDidBecomeActive时，将音频标记为不是被打断的。</span>
+    <span class="err">//音频焦点被抢时，可能不会立即收到夺回音频焦点的回调，而是在APP进入前台时，收到通知，这时如再继续播放，体验不好。所以这个时候就不再恢复播放了。</span>
+    <span class="err">_breadType</span> <span class="err">=</span> <span class="err">0;</span>
+<span class="p">}</span>
+<span class="nf">#pragma</span> <span class="nt">mark</span> <span class="nt">-</span> <span class="err">远程控制配置</span> <span class="err">耳机线控</span>
+<span class="nt">-</span> <span class="o">(</span><span class="nt">void</span><span class="o">)</span> <span class="nt">configRemoteCommandCenter</span>
+<span class="p">{</span>
+    <span class="err">WeakSelf</span>
+
+    <span class="err">MPRemoteCommandCenter</span> <span class="err">*remoteCommandCenter</span> <span class="err">=</span>  <span class="err">[MPRemoteCommandCenter</span> <span class="err">sharedCommandCenter];</span>
+    <span class="err">//</span>    <span class="err">上一曲按钮</span>
+    <span class="err">MPRemoteCommand</span> <span class="err">*previousTrackCommand</span> <span class="err">=</span> <span class="err">remoteCommandCenter.previousTrackCommand;</span>
+    <span class="err">previousTrackCommand.enabled</span> <span class="err">=</span> <span class="err">YES;</span>
+    <span class="err">[previousTrackCommand</span> <span class="py">addTargetWithHandler</span><span class="p">:</span><span class="err">^</span><span class="n">MPRemoteCommandHandlerStatus</span><span class="p">(</span><span class="n">MPRemoteCommandEvent</span> <span class="err">*</span> <span class="n">_Nonnull</span> <span class="n">event</span><span class="p">)</span> <span class="err">{</span>
+        <span class="p">[</span><span class="n">weakSelf</span> <span class="n">playPre</span><span class="p">];</span>
+        <span class="err">return</span> <span class="err">MPRemoteCommandHandlerStatusSuccess;</span>
+    <span class="p">}</span><span class="o">];</span>
+    <span class="o">//</span>    <span class="err">下一曲按钮</span>
+    <span class="nt">MPRemoteCommand</span> <span class="o">*</span><span class="nt">nextTrackCommand</span> <span class="o">=</span> <span class="nt">remoteCommandCenter</span><span class="nc">.nextTrackCommand</span><span class="o">;</span>
+    <span class="nt">nextTrackCommand</span><span class="nc">.enabled</span> <span class="o">=</span> <span class="nt">YES</span><span class="o">;</span>
+    <span class="o">[</span><span class="nt">nextTrackCommand</span> <span class="nt">addTargetWithHandler</span><span class="o">:^</span><span class="nt">MPRemoteCommandHandlerStatus</span><span class="o">(</span><span class="nt">MPRemoteCommandEvent</span> <span class="o">*</span> <span class="nt">_Nonnull</span> <span class="nt">event</span><span class="o">)</span> <span class="p">{</span>
+        <span class="err">[weakSelf</span> <span class="err">playNext];</span>
+        <span class="err">return</span> <span class="err">MPRemoteCommandHandlerStatusSuccess;</span>
+    <span class="p">}</span><span class="o">];</span>
+
+    <span class="o">//</span>    <span class="err">暂停按钮</span> 
+    <span class="nt">MPRemoteCommand</span> <span class="o">*</span><span class="nt">pauseCommand</span> <span class="o">=</span> <span class="nt">remoteCommandCenter</span><span class="nc">.pauseCommand</span><span class="o">;</span>
+    <span class="o">[</span><span class="nt">pauseCommand</span> <span class="nt">addTargetWithHandler</span><span class="o">:^</span><span class="nt">MPRemoteCommandHandlerStatus</span><span class="o">(</span><span class="nt">MPRemoteCommandEvent</span> <span class="o">*</span> <span class="nt">_Nonnull</span> <span class="nt">event</span><span class="o">)</span> <span class="p">{</span>
+        <span class="err">[weakSelf</span> <span class="err">pause];</span>
+        <span class="err">return</span> <span class="err">MPRemoteCommandHandlerStatusSuccess;</span>
+    <span class="p">}</span><span class="o">];</span>
+    <span class="nt">pauseCommand</span><span class="nc">.enabled</span> <span class="o">=</span> <span class="nt">YES</span><span class="o">;</span>
+    <span class="o">//</span>    <span class="err">播放按钮</span>
+    <span class="nt">MPRemoteCommand</span> <span class="o">*</span><span class="nt">playCommand</span> <span class="o">=</span> <span class="nt">remoteCommandCenter</span><span class="nc">.playCommand</span><span class="o">;</span>
+    <span class="nt">playCommand</span><span class="nc">.enabled</span> <span class="o">=</span> <span class="nt">YES</span><span class="o">;</span>
+    <span class="o">[</span><span class="nt">playCommand</span> <span class="nt">addTargetWithHandler</span><span class="o">:^</span><span class="nt">MPRemoteCommandHandlerStatus</span><span class="o">(</span><span class="nt">MPRemoteCommandEvent</span> <span class="o">*</span> <span class="nt">_Nonnull</span> <span class="nt">event</span><span class="o">)</span> <span class="p">{</span>
+        <span class="err">if</span> <span class="err">(self.rate.floatValue</span> <span class="err">==</span> <span class="err">1)</span> <span class="err">{</span>
+            <span class="err">[weakSelf</span> <span class="err">resume];</span>
+            <span class="err">return</span> <span class="err">MPRemoteCommandHandlerStatusSuccess;</span>
+        <span class="p">}</span><span class="nt">else</span><span class="p">{</span>
+        <span class="err">//当在倍速情况下播放，出现点击点击暂停按钮也会走到这个回调中，不几道怎么回事</span>
+            <span class="err">if</span> <span class="err">(weakSelf.status</span> <span class="err">==</span> <span class="err">AudioPlayStatusPlay)</span> <span class="err">{</span>
+                <span class="err">[weakSelf</span> <span class="err">pause];</span>
+            <span class="p">}</span><span class="nt">else</span><span class="p">{</span>
+                <span class="err">[weakSelf</span> <span class="err">resume];</span>
+            <span class="p">}</span>
+        <span class="err">}</span>
+        <span class="nt">return</span> <span class="nt">MPRemoteCommandHandlerStatusSuccess</span><span class="o">;</span>
+
+    <span class="err">}</span><span class="o">];</span>
+
+<span class="o">//</span>    <span class="err">播放进度调节按钮</span>
+    <span class="nt">MPRemoteCommand</span> <span class="o">*</span><span class="nt">changePlaybackPositionCommand</span> <span class="o">=</span> <span class="nt">remoteCommandCenter</span><span class="nc">.changePlaybackPositionCommand</span><span class="o">;</span>
+    <span class="nt">changePlaybackPositionCommand</span><span class="nc">.enabled</span> <span class="o">=</span> <span class="nt">YES</span><span class="o">;</span>
+    <span class="o">[</span><span class="nt">changePlaybackPositionCommand</span> <span class="nt">addTargetWithHandler</span><span class="o">:^</span><span class="nt">MPRemoteCommandHandlerStatus</span><span class="o">(</span><span class="nt">MPRemoteCommandEvent</span> <span class="o">*</span> <span class="nt">_Nonnull</span> <span class="nt">event</span><span class="o">)</span> <span class="p">{</span>
+        <span class="err">MPChangePlaybackPositionCommandEvent</span> <span class="err">*</span> <span class="err">playbackPositionEvent</span> <span class="err">=</span> <span class="err">(MPChangePlaybackPositionCommandEvent</span> <span class="err">*)event;</span>
+        <span class="err">[weakSelf</span> <span class="py">seekToTime</span><span class="p">:</span><span class="n">playbackPositionEvent</span><span class="p">.</span><span class="n">positionTime</span> <span class="n">completionHandler</span><span class="p">:</span><span class="err">^</span><span class="p">(</span><span class="n">BOOL</span> <span class="n">finished</span><span class="p">)</span> <span class="err">{</span>
+            
+        <span class="p">}</span><span class="o">];</span>
+        <span class="nt">return</span> <span class="nt">MPRemoteCommandHandlerStatusSuccess</span><span class="o">;</span>
+    <span class="err">}</span><span class="o">];</span>
+    <span class="o">//</span>    <span class="err">耳机线控按钮单击时会调用</span>
+    <span class="nt">MPRemoteCommand</span> <span class="o">*</span><span class="nt">togglePlayPauseCommand</span> <span class="o">=</span> <span class="nt">remoteCommandCenter</span><span class="nc">.togglePlayPauseCommand</span><span class="o">;</span>
+    <span class="nt">togglePlayPauseCommand</span><span class="nc">.enabled</span> <span class="o">=</span> <span class="nt">YES</span><span class="o">;</span>
+    <span class="o">[</span><span class="nt">togglePlayPauseCommand</span> <span class="nt">addTargetWithHandler</span><span class="o">:^</span><span class="nt">MPRemoteCommandHandlerStatus</span><span class="o">(</span><span class="nt">MPRemoteCommandEvent</span> <span class="o">*</span> <span class="nt">_Nonnull</span> <span class="nt">event</span><span class="o">)</span> <span class="p">{</span>
+        <span class="err">if</span> <span class="err">(weakSelf.status</span> <span class="err">==</span> <span class="err">AudioPlayStatusPlay)</span> <span class="err">{</span>
+            <span class="err">[weakSelf</span> <span class="err">pause];</span>
+        <span class="p">}</span><span class="nt">else</span><span class="p">{</span>
+            <span class="err">[weakSelf</span> <span class="err">resume];</span>
+        <span class="p">}</span>
+        <span class="nt">return</span> <span class="nt">0</span><span class="o">;</span>
+    <span class="err">}</span><span class="o">];</span>
+    
+<span class="err">}</span>
+<span class="nf">#pragma</span> <span class="nt">mark</span> <span class="nt">-</span> <span class="err">来电话处理</span>
+<span class="nt">-</span> <span class="o">(</span><span class="nt">void</span><span class="o">)</span><span class="nt">handleCall</span><span class="p">{</span>
+    <span class="err">WeakSelf</span>
+    <span class="err">self.callCenter</span> <span class="err">=</span> <span class="err">[[CTCallCenter</span> <span class="err">alloc]</span> <span class="err">init];</span>
+    <span class="err">self.callCenter.callEventHandler</span> <span class="err">=</span> <span class="err">^(CTCall*</span> <span class="err">call)</span> <span class="err">{</span>
+        <span class="err">if</span> <span class="err">([call.callState</span> <span class="py">isEqualToString</span><span class="p">:</span><span class="n">CTCallStateDisconnected</span><span class="p">])</span><span class="err">{</span>
+            <span class="n">DLog</span><span class="p">(</span><span class="err">@</span><span class="s1">"挂断电话Call has been disconnected"</span><span class="p">);</span>
+            <span class="err">if</span> <span class="err">(_beforeCallIsPlaying</span> <span class="err">==</span> <span class="err">AudioPlayStatusPlay)</span> <span class="err">{</span>
+                <span class="err">[weakSelf</span> <span class="err">resume];</span>
+            <span class="p">}</span>
+        <span class="err">}</span><span class="nt">else</span> <span class="nt">if</span> <span class="o">([</span><span class="nt">call</span><span class="nc">.callState</span> <span class="nt">isEqualToString</span><span class="nd">:CTCallStateConnected</span><span class="o">])</span><span class="p">{</span>
+            <span class="err">DLog(@"电话通了Call</span> <span class="err">has</span> <span class="err">just</span> <span class="err">been</span> <span class="err">connected");</span>
+        <span class="p">}</span><span class="nt">else</span> <span class="nt">if</span><span class="o">([</span><span class="nt">call</span><span class="nc">.callState</span> <span class="nt">isEqualToString</span><span class="nd">:CTCallStateIncoming</span><span class="o">])</span><span class="p">{</span>
+            <span class="err">DLog(@"来电话了Call</span> <span class="err">is</span> <span class="err">incoming");</span>
+            <span class="err">_beforeCallIsPlaying</span> <span class="err">=</span> <span class="err">weakSelf.status;</span>
+            <span class="err">if</span> <span class="err">(_beforeCallIsPlaying</span> <span class="err">==</span> <span class="err">AudioPlayStatusPlay)</span> <span class="err">{</span>
+                <span class="err">[weakSelf</span> <span class="err">pause];</span>
+            <span class="p">}</span>
+        <span class="err">}</span> <span class="nt">else</span> <span class="nt">if</span> <span class="o">([</span><span class="nt">call</span><span class="nc">.callState</span> <span class="nt">isEqualToString</span><span class="nd">:CTCallStateDialing</span><span class="o">])</span><span class="p">{</span>
+            <span class="err">DLog(@"正在拨出电话call</span> <span class="err">is</span> <span class="err">dialing");</span>
+            <span class="err">_beforeCallIsPlaying</span> <span class="err">=</span> <span class="err">weakSelf.status;</span>
+            <span class="err">if</span> <span class="err">(_beforeCallIsPlaying</span> <span class="err">==</span> <span class="err">AudioPlayStatusPlay)</span> <span class="err">{</span>
+                <span class="err">[weakSelf</span> <span class="err">pause];</span>
+            <span class="p">}</span>
+        <span class="err">}</span><span class="nt">else</span><span class="p">{</span>
+            <span class="err">DLog(@"什么没做Nothing</span> <span class="err">is</span> <span class="err">done");</span>
+        <span class="p">}</span>
+    <span class="err">}</span><span class="o">;</span>
+
+<span class="err">}</span>
+
+
+</code></pre></div></div>
+
+
+    </article>
+
+    
+    <div class="social-share-wrapper">
+      <div class="social-share"></div>
+    </div>
+    
+  </div>
+
+  <section class="author-detail">
+    <section class="post-footer-item author-card">
+      <div class="avatar">
+        <img src="/assets/img/profile.png" alt="">
+      </div>
+      <div class="author-name" rel="author">史文强</div>
+      <div class="bio">
+        <p>iOS开发者</p>
+      </div>
+      
+    </section>
+    <section class="post-footer-item read-next">
+      
+
+      
+      <div class="read-next-item">
+        <a href="/2020/04/22/git.html" class="read-next-link"></a>
+          <section>
+            <span>git</span>
+            <p>###</p>
+          </section>
+          
+      </div>
+      
+    </section>
+    
+    <section class="post-footer-item comment">
+        <div id="disqus_thread"></div>
+    </section>
+    
+  </section>
+
+  <footer class="g-footer">
+  <section>史文强的独立博客 ©
+  
+  
+  2020
+  </section>
+  <section>Powered by <a href="//jekyllrb.com">Jekyll</a> | <a href="https://github.com/kaeyleo/jekyll-theme-H2O">Theme H2O</a></section>
+</footer>
+
+
+  <script src="/assets/js/social-share.min.js"></script>
+  <script>
+    socialShare('.social-share', {
+      sites: [
+        
+          'wechat'
+          ,
+          
+        
+          'weibo'
+          ,
+          
+        
+          'douban'
+          
+        
+      ],
+      wechatQrcodeTitle: "分享到微信朋友圈",
+      wechatQrcodeHelper: '<p>扫码后点击右上角</p><p>将本文分享至朋友圈</p>'
+    });
+  </script>
+
+  
+  <script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://liaokeyu.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  
+
+  <script src="/assets/js/prism.js"></script>
+  <script src="/assets/js/index.min.js"></script>
+</body>
+
+</html>

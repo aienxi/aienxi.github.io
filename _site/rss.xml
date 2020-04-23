@@ -5,9 +5,209 @@
     <description>自己当做笔记</description>
     <link>http://localhost:4000//</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 22 Apr 2020 12:12:05 +0800</pubDate>
-    <lastBuildDate>Wed, 22 Apr 2020 12:12:05 +0800</lastBuildDate>
+    <pubDate>Thu, 23 Apr 2020 14:54:38 +0800</pubDate>
+    <lastBuildDate>Thu, 23 Apr 2020 14:54:38 +0800</lastBuildDate>
     <generator>Jekyll v4.0.0</generator>
+    
+      <item>
+        <title>iOS播放器</title>
+        <description>&lt;h3 id=&quot;设置后台播放&quot;&gt;设置后台播放&lt;/h3&gt;
+&lt;h4 id=&quot;1在signing--capabilities中设-backgroud-modes-按需添加&quot;&gt;1.在Signing &amp;amp; Capabilities中设 backgroud modes 按需添加&lt;/h4&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;backgroud&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;modes&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;plays&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;audio&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;streams&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;audio&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;video&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;AirPlay&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;downloads&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;the&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;network&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;downloads&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;content&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;push&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;notifications&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h4 id=&quot;2激活音频会话&quot;&gt;2.激活音频会话&lt;/h4&gt;
+
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;设置后台播放的代码&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;步骤&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;获取音频的会话&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;AVAudioSession&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;session&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;AVAudioSession&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;sharedInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;设置后台播放类型&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;session&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;setCategory&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:AVAudioSessionCategoryPlayback&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:nil&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;激活会话&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;session&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;setActive&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:YES&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:nil&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h4 id=&quot;播放轨道变化通知-连接耳机-音箱等插拔耳机音频被打断事件配置远程控制显示的信息耳机线控&quot;&gt;播放轨道变化通知 （连接耳机 音箱等）、插拔耳机、音频被打断事件、配置远程控制显示的信息（耳机线控）&lt;/h4&gt;
+&lt;div class=&quot;language-css highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;afterInit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;err&quot;&gt;///配置远程控制显示的信息&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;[[UIApplication&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;sharedApplication]&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;beginReceivingRemoteControlEvents];&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;[self&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;configRemoteCommandCenter];&lt;/span&gt;
+
+&lt;span class=&quot;err&quot;&gt;//&lt;/span&gt;  &lt;span class=&quot;err&quot;&gt;插拔耳机&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;[[NSNotificationCenter&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;defaultCenter]&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;addObserver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;audioRouteChangeListenerCallback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:)&lt;/span&gt;   &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AVAudioSessionRouteChangeNotification&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;//&lt;/span&gt;  &lt;span class=&quot;err&quot;&gt;音频被打断事件&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;[[NSNotificationCenter&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;defaultCenter]&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;addObserver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;audioBreakEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AVAudioSessionInterruptionNotification&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;//&lt;/span&gt;  &lt;span class=&quot;err&quot;&gt;应用程序进入前台&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;[[NSNotificationCenter&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;defaultCenter]&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;addObserver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;self&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;selector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;appDidBecomeActive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UIApplicationDidBecomeActiveNotification&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;        
+&lt;span class=&quot;nf&quot;&gt;#pragma&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;mark&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-&lt;/span&gt;   &lt;span class=&quot;err&quot;&gt;插拔耳机&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;audioRouteChangeListenerCallback&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;NSNotification&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;notification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;NSDictionary&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*interuptionDict&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;notification.userInfo;&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;DLog(@&quot;%@&quot;,interuptionDict);&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;NSInteger&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;routeChangeReason&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;[[interuptionDict&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;valueForKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AVAudioSessionRouteChangeReasonKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;integerValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;switch&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;(routeChangeReason)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;AVAudioSessionRouteChangeReasonNewDeviceAvailable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;DLog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;耳机插入&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;break;&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;AVAudioSessionRouteChangeReasonOldDeviceUnavailable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;DLog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;耳机拔出，停止播放操作&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;dispatch_async(dispatch_get_main_queue(),&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;^{&lt;/span&gt;
+                &lt;span class=&quot;err&quot;&gt;[self&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;pause];&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;AVAudioSessionRouteChangeReasonCategoryChange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;DLog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(@&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;AVAudioSessionRouteChangeReasonCategoryChange&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;DLog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(@&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;AVAudioSession category = %@&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;AVAudioSession&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;sharedInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.category&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;#pragma&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;mark&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;音频被打断事件&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;audioBreakEvent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;NSNotification&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;notification&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;DLog(@&quot;audioBreakEvent&quot;);&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;NSDictionary&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*interuptionDict&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;notification.userInfo;&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;NSInteger&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;state&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;[[interuptionDict&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;objectForKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;AVAudioSessionInterruptionTypeKey&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;integerValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;(state&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;1)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;//当AudioSession被抢时，若我们的APP此时正在播放音频，暂停播放，并且标记下音频是被打断的&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;(self.isAudioActivity)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;err&quot;&gt;_breadType&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;1;&lt;/span&gt;
+                &lt;span class=&quot;err&quot;&gt;[self&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;pause];&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;//当夺回音频焦点时若音频是被打断的，则回恢复播放&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;(_breadType&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;1)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;err&quot;&gt;_breadType&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;0;&lt;/span&gt;
+                &lt;span class=&quot;err&quot;&gt;[self&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;resume];&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;DLog&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(@&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;%@&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;interuptionDict&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;appDidBecomeActive&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;//当appDidBecomeActive时，将音频标记为不是被打断的。&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;//音频焦点被抢时，可能不会立即收到夺回音频焦点的回调，而是在APP进入前台时，收到通知，这时如再继续播放，体验不好。所以这个时候就不再恢复播放了。&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;_breadType&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;0;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;#pragma&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;mark&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;远程控制配置&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;耳机线控&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;configRemoteCommandCenter&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;WeakSelf&lt;/span&gt;
+
+    &lt;span class=&quot;err&quot;&gt;MPRemoteCommandCenter&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*remoteCommandCenter&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt;  &lt;span class=&quot;err&quot;&gt;[MPRemoteCommandCenter&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;sharedCommandCenter];&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;//&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;上一曲按钮&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;MPRemoteCommand&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*previousTrackCommand&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;remoteCommandCenter.previousTrackCommand;&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;previousTrackCommand.enabled&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;YES;&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;[previousTrackCommand&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;addTargetWithHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;^&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MPRemoteCommandHandlerStatus&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MPRemoteCommandEvent&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;_Nonnull&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;weakSelf&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;playPre&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;MPRemoteCommandHandlerStatusSuccess;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;下一曲按钮&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;MPRemoteCommand&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;nextTrackCommand&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;remoteCommandCenter&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.nextTrackCommand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;nextTrackCommand&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.enabled&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;YES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;nextTrackCommand&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;addTargetWithHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:^&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;MPRemoteCommandHandlerStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;MPRemoteCommandEvent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;_Nonnull&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;[weakSelf&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;playNext];&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;MPRemoteCommandHandlerStatusSuccess;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+
+    &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;暂停按钮&lt;/span&gt; 
+    &lt;span class=&quot;nt&quot;&gt;MPRemoteCommand&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;pauseCommand&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;remoteCommandCenter&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.pauseCommand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;pauseCommand&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;addTargetWithHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:^&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;MPRemoteCommandHandlerStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;MPRemoteCommandEvent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;_Nonnull&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;[weakSelf&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;pause];&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;MPRemoteCommandHandlerStatusSuccess;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;pauseCommand&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.enabled&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;YES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;播放按钮&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;MPRemoteCommand&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;playCommand&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;remoteCommandCenter&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.playCommand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;playCommand&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.enabled&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;YES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;playCommand&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;addTargetWithHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:^&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;MPRemoteCommandHandlerStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;MPRemoteCommandEvent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;_Nonnull&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;(self.rate.floatValue&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;1)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;[weakSelf&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;resume];&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;MPRemoteCommandHandlerStatusSuccess;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;//当在倍速情况下播放，出现点击点击暂停按钮也会走到这个回调中，不几道怎么回事&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;(weakSelf.status&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;AudioPlayStatusPlay)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;err&quot;&gt;[weakSelf&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;pause];&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;err&quot;&gt;[weakSelf&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;resume];&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;MPRemoteCommandHandlerStatusSuccess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;播放进度调节按钮&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;MPRemoteCommand&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;changePlaybackPositionCommand&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;remoteCommandCenter&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.changePlaybackPositionCommand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;changePlaybackPositionCommand&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.enabled&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;YES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;changePlaybackPositionCommand&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;addTargetWithHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:^&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;MPRemoteCommandHandlerStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;MPRemoteCommandEvent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;_Nonnull&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;MPChangePlaybackPositionCommandEvent&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;playbackPositionEvent&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;(MPChangePlaybackPositionCommandEvent&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*)event;&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;[weakSelf&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;seekToTime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;playbackPositionEvent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;positionTime&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;completionHandler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;^&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;BOOL&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;finished&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+            
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;MPRemoteCommandHandlerStatusSuccess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;//&lt;/span&gt;    &lt;span class=&quot;err&quot;&gt;耳机线控按钮单击时会调用&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;MPRemoteCommand&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;togglePlayPauseCommand&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;remoteCommandCenter&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.togglePlayPauseCommand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;togglePlayPauseCommand&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.enabled&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;YES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;togglePlayPauseCommand&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;addTargetWithHandler&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:^&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;MPRemoteCommandHandlerStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;MPRemoteCommandEvent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;_Nonnull&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;(weakSelf.status&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;AudioPlayStatusPlay)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;[weakSelf&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;pause];&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;[weakSelf&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;resume];&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+    
+&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nf&quot;&gt;#pragma&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;mark&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;来电话处理&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;void&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;handleCall&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;WeakSelf&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;self.callCenter&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;[[CTCallCenter&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;alloc]&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;init];&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;self.callCenter.callEventHandler&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;^(CTCall*&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;call)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;([call.callState&lt;/span&gt; &lt;span class=&quot;py&quot;&gt;isEqualToString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;CTCallStateDisconnected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;DLog&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&quot;挂断电话Call has been disconnected&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;(_beforeCallIsPlaying&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;AudioPlayStatusPlay)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;err&quot;&gt;[weakSelf&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;resume];&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.callState&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;isEqualToString&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:CTCallStateConnected&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;DLog(@&quot;电话通了Call&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;has&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;just&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;been&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;connected&quot;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.callState&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;isEqualToString&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:CTCallStateIncoming&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;DLog(@&quot;来电话了Call&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;incoming&quot;);&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;_beforeCallIsPlaying&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;weakSelf.status;&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;(_beforeCallIsPlaying&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;AudioPlayStatusPlay)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;err&quot;&gt;[weakSelf&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;pause];&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.callState&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;isEqualToString&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;:CTCallStateDialing&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;])&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;DLog(@&quot;正在拨出电话call&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;dialing&quot;);&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;_beforeCallIsPlaying&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;weakSelf.status;&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;(_beforeCallIsPlaying&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;AudioPlayStatusPlay)&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;err&quot;&gt;[weakSelf&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;pause];&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;err&quot;&gt;DLog(@&quot;什么没做Nothing&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;is&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;done&quot;);&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Thu, 23 Apr 2020 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2020/04/23/IOS%E6%92%AD%E6%94%BE%E5%99%A8%E7%9B%B8%E5%85%B3.html</link>
+        <guid isPermaLink="true">http://localhost:4000/2020/04/23/IOS%E6%92%AD%E6%94%BE%E5%99%A8%E7%9B%B8%E5%85%B3.html</guid>
+        
+        <category>播放器</category>
+        
+        
+      </item>
     
       <item>
         <title>git</title>
